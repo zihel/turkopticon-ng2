@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 beforeEachProviders(() => [AppComponent]);
 
-describe('App: TurkopticonNg2', () => {
+describe('App: ToMockup', () => {
   it('should create the app',
       inject([AppComponent], (app: AppComponent) => {
     expect(app).toBeTruthy();

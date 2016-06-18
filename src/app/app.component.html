@@ -1,3 +1,29 @@
-<h1>
-  {{title}}
-</h1>
+<div class="userbar">user bar placeholder</div>
+<h1> {{title}} </h1>
+<a href="#" (click)="toggleForm($event)">form test</a>
+<header>
+  <nav>
+    <div>
+      <a *ngFor="let link of headPaths.paths" [routerLink]="['/'+link]">
+        <i class="icon {{headPaths.icon[link]}}"></i>
+        {{ headPaths.map[link] || link }}
+      </a>
+      <a *ngFor="let temp of headPaths.temp">{{ temp }}</a>
+    </div>
+    <div>
+      <input type="text" placeholder="Search" />
+    </div>
+  </nav>
+</header>
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>
+<footer>
+  <nav class="foot">
+    <!-- <a *ngFor="let link of footPaths.paths" [routerLink]="['/'+link]">{{ footPaths.map[link] || link }}</a> -->
+    <a *ngFor="let link of footPaths.paths">{{ footPaths.map[link] || link }}</a>
+    <a href="https://turkopticon.ucsd.edu/forum/">forum</a>
+    <a href="https://twitter.com/turkopticon">twitter</a>
+  </nav>
+</footer>
+<review-form *ngIf="showForm" (onCancel)="toggleForm()"></review-form>
