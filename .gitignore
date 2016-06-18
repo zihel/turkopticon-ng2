@@ -24,10 +24,16 @@ npm-debug.log
 testem.log
 /typings
 
+# unit tests
+*.spec.ts
+
 # e2e
 /e2e/*.js
 /e2e/*.map
 
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
+
+# vim
+*~
