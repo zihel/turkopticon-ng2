@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // import 'rxjs/add/observable/interval';
 // import 'rxjs/add/observable/zip';
 
-import { ReviewGroupComponent, ReviewOverviewComponent, ReviewService } from '../review-group';
+import { ReviewGroupComponent, ReviewOverviewComponent, ReviewService } from '../../review-group';
 
 @Component({
   moduleId: module.id,
