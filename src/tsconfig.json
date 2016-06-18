@@ -56,8 +56,6 @@
     "app/review-group/review.service.ts",
     "app/review-group/shared/index.ts",
     "app/shared/index.ts",
-    "app/to-mockup.component.spec.ts",
-    "app/to-mockup.component.ts",
     "main.ts",
     "system-config.ts",
     "typings.d.ts"
