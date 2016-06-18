@@ -1,0 +1,154 @@
+<div class="curtains" (click)="cancel()" [style.height.px]="windowY"> </div>
+<div class="form">
+  <form [ngFormModel]="reviewForm" (ngSubmit)="onSubmit(reviewForm.value,detailsForm.value)">
+    <fieldset>
+      <label class="float" [class.error]="hasError(reviewForm,'hitTitle')" for="hitTitle">{{ labels.title }}</label>
+      <input type="text" id="hitTitle" ngControl="hitTitle" />
+    </fieldset>
+    <fieldset>
+      <label class="float" for="pay" [class.error]="hasError(reviewForm,'pay')">{{ labels.pay }}</label>
+      <span style="position:absolute;top:50%;left:1%">
+        <label for="pay">US $</label>
+      </span>
+      <input type="number" min="0" step="0.01" id="pay" ngControl="pay" style="padding-left:2.73em" />
+    </fieldset>
+    <fieldset>
+      <label class="float" [class.error]="hasError(reviewForm,'rid')" for="rid">{{ labels.rid }}</label>
+      <input type="text" id="rid" ngControl="rid" />
+    </fieldset>
+    <fieldset>
+      <label class="float" [class.error]="hasError(reviewForm,'rname')" for="rname">{{ labels.rname }}</label>
+      <input type="text" id="rname" ngControl="rname" />
+    </fieldset>
+    <fieldset ngControlGroup="brokenGroup">
+      <input #broken type="checkbox" id="broken" ngControl="broken" />
+      <label for="broken">{{ labels.broken }}</label>
+      <div class="dependent" *ngIf="broken.checked">
+        <label class="block" [class.error]="hasError(reviewForm,'brokenGroup')" for="broken_">{{ labels.broken_ }}</label>
+        <textarea id="broken_" ngControl="broken_"></textarea>
+      </div>
+    </fieldset>
+    <fieldset ngControlGroup="deceptiveGroup">
+      <input #deceptive type="checkbox" id="deceptive" ngControl="deceptive" />
+      <label for="deceptive">{{ labels.deceptive }}</label>
+      <div class="dependent" *ngIf="deceptive.checked">
+        <label class="block" [class.error]="hasError(reviewForm,'deceptiveGroup')" for="deceptive_">{{ labels.deceptive_ }}</label>
+        <textarea id="deceptive_" ngControl="deceptive_"></textarea>
+      </div>
+    </fieldset>
+    <fieldset ngControlGroup="tosGroup">
+      <input #tos type="checkbox" id="tos" ngControl="tos" />
+      <label for="tos">{{ labels.tos }}</label>
+      <div class="dependent" *ngIf="tos.checked">
+        <label class="block" [class.error]="hasError(reviewForm,'tosGroup')" for="tos_">{{ labels.tos_ }}</label>
+        <textarea id="tos_" ngControl="tos_"></textarea>
+      </div>
+    </fieldset>
+    <fieldset ngControlGroup="didIt">
+      <label class="block" [class.error]="hasError(reviewForm,'didIt')">{{ labels.didIt }}</label>
+      <label class="sub">
+        <input #yesDidIt type="radio" name="didIt" ngControl="yesDidIt" />
+        Yes
+      </label>
+      <label class="sub">
+        <input type="radio" name="didIt" ngControl="noDidIt" />
+        No
+      </label>
+    </fieldset>
+    <form *ngIf="yesDidIt.checked" [ngFormModel]="detailsForm">
+      <fieldset ngControlGroup="isBatch">
+        <label class="block" [class.error]="hasError(detailsForm,'isBatch')">{{ labels.isBatch }}</label>
+        <label class="sub">
+          <input type="radio" #yesBatch name="isBatch" ngControl="yesBatch" (change)="toggleFormMode('batch')" />
+          Yes
+        </label>
+        <label class="sub">
+          <input type="radio" name="isBatch" ngControl="noBatch" (change)="toggleFormMode('single')" />
+          No, just one
+        </label>
+      </fieldset>
+      <div *ngIf="detailsForm.find('isBatch').valid">
+        <fieldset ngControlGroup="time">
+          <label class="block" [class.error]="hasError(detailsForm,'time')">{{ labels.time }}</label>
+          <label class="sub">
+            <input type="number" min="0" ngControl="timeH" /> hours
+          </label>
+          <label class="sub">
+            <input type="number" min="0" ngControl="timeM" /> minutes
+          </label>
+          <label class="sub">
+            <input type="number" min="0" ngControl="timeS" /> seconds
+          </label>
+        </fieldset>
+        <fieldset ngControlGroup="pending">
+          <label class="block" [class.error]="hasError(detailsForm,'pending.somePending','isBatch.yesBatch')">{{ labels.pending }}</label>
+          <label class="sub" style="display:block">
+            <input type="radio" name="pending" ngControl="allPending" />
+            {{ labels.allPending }}
+          </label>
+          <label [class.disabled]="formMode==='single'" class="sub" style="display:block">
+            <input type="radio" name="pending" [disabled]="formMode==='single'" ngControl="somePending" />
+            Yes, but some have already been approved or rejected
+          </label>
+          <label class="sub" style="display:block">
+            <input type="radio" name="pending" ngControl="noPending" />
+            {{ labels.noPending }}
+          </label>
+        </fieldset>
+        <fieldset *ngIf="conditional(detailsForm,'pending.somePending','isBatch.yesBatch','yes')" ngControlGroup="rejected">
+          <label class="block" [class.error]="hasError(detailsForm,'rejected.someRejected','isBatch.yesBatch')">{{ labels.rejected }}</label>
+          <label class="sub" style="display:block">
+            <input type="radio" name="rejected" ngControl="allRejected" />
+            {{ labels.allRejected }}
+          </label>
+          <label [class.disabled]="formMode==='single'" class="sub" style="display:block">
+            <input type="radio" name="rejected" [disabled]="formMode==='single'" ngControl="someRejected" />
+            Yes, some of it
+          </label>
+          <label class="sub" style="display:block">
+            <input type="radio" name="rejected" ngControl="noRejected" />
+            No
+          </label>
+        </fieldset>
+        <fieldset *ngIf="conditional(detailsForm,'rejected.someRejected','isBatch.yesBatch','no')" ngControlGroup="fair">
+          <label class="block">{{ labels.fair }}</label>
+          <label class="sub" style="display:block">
+            <input type="radio" name="fair" ngControl="yesFair" />
+            Yes (or probably)
+          </label>
+          <label class="sub" style="display:block">
+            <input type="radio" name="fair" ngControl="noFair" />
+            No (or probably not)
+          </label>
+        </fieldset>
+        <fieldset ngControlGroup="comm">
+          <label class="block">{{ labels.comm }}</label>
+          <label class="sub">
+            <input #yesComm type="radio" name="comm" ngControl="yesComm" />
+            Yes
+          </label>
+          <label class="sub">
+            <input type="radio" name="comm" ngControl="yesComm" />
+            No
+          </label>
+        </fieldset>
+        <fieldset *ngIf="yesComm.checked" ngControlGroup="commSatisfaction">
+          <label class="block">{{ labels.commSatisfaction }}</label>
+          <label class="sub">
+            <input type="radio" name="commSatisfaction" NgControl="yesCommSatisfaction" />
+            Yes
+          </label>
+          <label class="sub">
+            <input type="radio" name="commSatisfaction" NgControl="noCommSatisfaction" />
+            No
+          </label>
+        </fieldset>
+      </div>
+    </form>
+    <fieldset>
+      <label class="block" for="comments">{{ labels.comments }}</label>
+      <textarea id="comments" ngControl="comments"></textarea>
+    </fieldset>
+    <button type="submit">Submit</button>
+  </form>
+</div>

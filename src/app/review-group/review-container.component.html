@@ -1,0 +1,21 @@
+<div class="main">
+  <div class="title" *ngIf="data.name">
+    <a class="name"
+      [routerLink]="['/reviews', {rid:data.rid}]">{{data.name}}</a> [{{data.rid}}]
+    <span *ngIf="data.aliases && data.aliases.length">aliases: {{data.aliases.join(', ')}}</span>
+  </div>
+  <div class="grid">
+    <div class="left"><div class="box divider">
+      <review-rating [data]="data"></review-rating>
+    </div></div>
+    <div class="right column">
+      <p><b>Title: </b>{{ data.review && data.review.title || data.title }}</p>
+      {{data.review && data.review.text || data.text }}
+      <div class="info">
+        <time>{{data.review && data.review.time || data.time }}</time>
+        <span>{{data.review && data.review.user || data.user }}</span>
+      </div>
+      <review-comments></review-comments>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.tos {
+  border-radius: 0.3em;
+  border: 1px solid crimson;
+  padding: 0.22em;
+  font-size: 0.8em;
+  background: rgba(255, 177, 0, 0.1)
+}
+.tos span:first-of-type {
+  color: crimson;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.dd {
+  padding-left: 10%;
+}

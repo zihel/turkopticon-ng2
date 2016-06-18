@@ -1,0 +1,60 @@
+<div class="overview grid">
+  <div class="heading left">
+    <div class="divider box">
+      <h2>{{overviewData?.name}}</h2>
+      <p>
+        {{overviewData?.rid}}
+        <span style="display:block" *ngIf="overviewData && overviewData.aliases.length">Aliases: {{overviewData?.aliases.join(', ')}}</span>
+      </p>
+      <p><a href={{searchLink}}>Search on Mturk</a></p>
+    </div>
+  </div>
+  <div class="stats right">
+    <div class="recent grid" style="flex-direction:column;width:100%;text-align:center">
+      Last 90 days
+      <div class="grid">
+        <div class="databox">
+          <span>$</span><span class="value">{{ overviewData?.globalAttrs?.pay }}</span><span>/hr</span>
+          <span style="display:block">PAY</span>
+        </div>
+        <div class="databox">
+          <span class="value">{{ overviewData?.globalAttrs?.fair }}</span>
+          <span style="display:block">FAIR</span>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="databox">
+          <span class="value">{{ overviewData?.globalAttrs?.fast }}</span>
+          <span style="display:block">FAST</span>
+        </div>
+        <div class="databox">
+          <span class="value">{{ overviewData?.globalAttrs?.comm }}</span>
+          <span style="display:block">COMM</span>
+        </div>
+      </div>
+    </div>
+    <div class="total grid" style="flex-direction:column;width:100%;text-align:center">
+      Lifetime total
+      <div class="grid">
+        <div class="databox">
+          <span>$</span><span class="value">{{ overviewData?.globalAttrs?.pay }}</span><span>/hr</span>
+          <span style="display:block">PAY</span>
+        </div>
+        <div class="databox">
+          <span class="value">{{ overviewData?.globalAttrs?.fair }}</span>
+          <span style="display:block">FAIR</span>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="databox">
+          <span class="value">{{ overviewData?.globalAttrs?.fast }}</span>
+          <span style="display:block">FAST</span>
+        </div>
+        <div Class="databox">
+          <span class="value">{{ overviewData?.globalAttrs?.comm }}</span>
+          <span style="display:block">COMM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
