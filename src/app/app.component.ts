@@ -14,9 +14,8 @@ export class AppComponent {
   title = 'turkopticon mockup';
   showForm:boolean = false;
   footPaths = {
-    temp: ['index', 'about', 'rules', 'FAQ'],
-    paths: ['index', 'about', 'rules', 'FAQ'],
-    map: {index: 'home'}
+    paths: ['index', 'about', 'rules', 'faq'],
+    map: {index: 'home', faq: 'FAQ'}
   };
   headPaths = {
     temp: ['placeholder', 'navigation', 'items'],
