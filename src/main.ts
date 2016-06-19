@@ -8,6 +8,7 @@ import {
   FaqComponent,
   AboutComponent,
   IndexComponent,
+  RulesComponent,
   ReviewsComponent
 } from './app/routes';
 
@@ -15,12 +16,13 @@ if (environment.production) {
   enableProdMode();
 }
 const routes:Array<any> = [
-  {path: '/faq', component: FaqComponent},
-  {path: '/about', component: AboutComponent},
-  {path: '/index', component: IndexComponent},
   {path: '', component: IndexComponent},
-  {path: '/reviews/:rid', component: ReviewsComponent},
-  {path: '/reviews', component: ReviewsComponent}
+  {path: 'index', component: IndexComponent},
+  {path: 'faq', component: FaqComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'rules', component: RulesComponent},
+  {path: 'reviews/:rid', component: ReviewsComponent},
+  {path: 'reviews', component: ReviewsComponent}
 ];
 bootstrap(AppComponent, [
   provideRouter(routes),
