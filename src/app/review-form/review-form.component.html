@@ -1,25 +1,42 @@
 <div class="curtains" (click)="cancel()" [style.height.px]="windowY"> </div>
 <div class="form">
   <form [formGroup]="reviewForm" (ngSubmit)="onSubmit(reviewForm.value)">
-    <fieldset>
-      <label class="float" [class.error]="hasError('hitTitle')" for="hitTitle">{{ labels.title }}</label>
-      <input type="text" id="hitTitle" formControlName="hitTitle" />
-    </fieldset>
-    <fieldset>
-      <label class="float" for="pay" [class.error]="hasError('pay')">{{ labels.pay }}</label>
-      <span style="position:absolute;top:50%;left:1%">
-        <label for="pay">US $</label>
-      </span>
-      <input type="number" min="0" step="0.01" id="pay" formControlName="pay" style="padding-left:2.73em" />
-    </fieldset>
-    <fieldset>
-      <label class="float" [class.error]="hasError('rid')" for="rid">{{ labels.rid }}</label>
-      <input type="text" id="rid" formControlName="rid" />
-    </fieldset>
-    <fieldset>
-      <label class="float" [class.error]="hasError('rname')" for="rname">{{ labels.rname }}</label>
-      <input type="text" id="rname" formControlName="rname" />
-    </fieldset>
+    <div class="flexbox">
+      <fieldset style="flex-basis:50%">
+        <input #hitTitle type="text" id="hitTitle" formControlName="hitTitle" />
+        <label class="float"
+               [class.error]="hasError('hitTitle')"
+               [class.active]="hitTitle.value?.length"
+               for="hitTitle">{{ labels.title }}</label>
+      </fieldset>
+      <fieldset>
+        <span style="position:absolute;top:0.73rem;color:rgba(0,0,0,0.75)">
+          <label for="pay">US $</label>
+        </span>
+        <input #pay type="number" min="0" step="0.01" id="pay" formControlName="pay" style="padding-left:2.73em" />
+        <label class="float"
+               [class.error]="hasError('pay')"
+               [class.active]="pay.value?.length"
+               style="background-color:#fff"
+               for="pay">{{ labels.pay }}</label>
+      </fieldset>
+    </div>
+    <div class="flexbox">
+      <fieldset style="flex-basis:50%">
+        <input #rname type="text" id="rname" formControlName="rname" />
+        <label class="float"
+               [class.error]="hasError('rname')"
+               [class.active]="rname.value?.length"
+               for="rname">{{ labels.rname }}</label>
+      </fieldset>
+      <fieldset>
+        <input #rid type="text" id="rid" formControlName="rid" />
+        <label class="float"
+               [class.error]="hasError('rid')"
+               [class.active]="rid.value?.length"
+               for="rid">{{ labels.rid }}</label>
+      </fieldset>
+    </div>
     <fieldset>
       <input #broken type="checkbox" id="broken" formControlName="broken" />
       <label for="broken">{{ labels.broken }}</label>
@@ -46,111 +63,98 @@
     </fieldset>
     <fieldset>
       <label class="block" [class.error]="hasError('didIt')">{{ labels.didIt }}</label>
-      <label class="sub">
-        <input #yesDidIt type="radio" name="didIt" (change)="setRadioValue('didIt','yes')" />
-        Yes
-      </label>
-      <label class="sub">
-        <input type="radio" name="didIt" (change)="setRadioValue('didIt','no')" />
-        No
-      </label>
+      <input #yesDidIt type="radio" id="yesDidIt" name="didIt" (change)="setRadioValue('didIt','yes')" />
+      <label class="sub" for="yesDidIt"> Yes </label>
+      <input type="radio" id="noDidIt" name="didIt" (change)="setRadioValue('didIt','no')" />
+      <label class="sub" for="noDidIt"> No </label>
     </fieldset>
     <fieldset *ngIf="yesDidIt.checked" formGroupName="isBatch">
       <label class="block" [class.error]="hasError('isBatch')">{{ labels.isBatch }}</label>
-      <label class="sub">
-        <input type="radio" #yesBatch name="isBatch" (change)="toggleFormMode('batch');setRadioValue('isBatch','yes')" />
-        Yes
-      </label>
-      <label class="sub">
-        <input type="radio" name="isBatch" (change)="toggleFormMode('single');setRadioValue('isBatch','no')" />
-        No, just one
-      </label>
+      <input type="radio" #yesBatch id="yesIsBatch" name="isBatch" (change)="toggleFormMode('batch');setRadioValue('isBatch','yes')" />
+      <label class="sub" for="yesIsBatch"> Yes </label>
+      <input type="radio" id="noIsBatch" name="isBatch" (change)="toggleFormMode('single');setRadioValue('isBatch','no')" />
+      <label class="sub" for="noIsBatch"> No, just one </label>
     </fieldset>
     <div *ngIf="reviewForm.find('isBatch')?.valid">
       <fieldset>
         <label class="block" [class.error]="hasError('time')">{{ labels.time }}</label>
         <input type="hidden" formControlName="time" [ngModel]="hitTime.value" />
-        <label class="sub">
-          <input type="number" min="0" (change)="hitTime.hours = $event.target.value" /> hours
-        </label>
-        <label class="sub">
-          <input type="number" min="0" (change)="hitTime.minutes = $event.target.value" /> minutes
-        </label>
-        <label class="sub">
-          <input type="number" min="0" (change)="hitTime.seconds = $event.target.value" /> seconds
-        </label>
+        <div class="flexbox" style="width:50%;min-width:290px;margin-top:0.5em">
+          <fieldset>
+            <input #hthh type="number" min="0" id="hthh" (change)="hitTime.hours = $event.target.value" />
+            <label class="sub float" for="hthh" [class.active]="hthh.value?.length">hours</label>
+          </fieldset>
+          <fieldset>
+            <input #htmm type="number" min="0" id="htmm" (change)="hitTime.minutes = $event.target.value" />
+            <label class="sub float" for="htmm" [class.active]="htmm.value?.length">minutes</label>
+          </fieldset>
+          <fieldset>
+            <input #htss type="number" min="0" id="htss" (change)="hitTime.seconds = $event.target.value" />
+            <label class="sub float" for="htss" [class.active]="htss.value?.length">seconds</label>
+          </fieldset>
+        </div>
       </fieldset>
       <fieldset>
         <label class="block" [class.error]="hasError('pending')">{{ labels.pending }}</label>
-        <label class="sub block">
-          <input type="radio" name="pending" (change)="setRadioValue('pending','yes')" />
-          {{ labels.allPending }}
-        </label>
-        <label [class.disabled]="formMode==='single'" class="sub block">
-          <input #somePending type="radio" name="pending" [disabled]="formMode==='single'" (change)="setRadioValue('pending','some')" />
+        <input type="radio" id="yesPending" name="pending" (change)="setRadioValue('pending','yes')" />
+        <label class="sub block" for="yesPending"> {{ labels.allPending }} </label>
+        <input #somePending
+               type="radio"
+               id="somePending"
+               name="pending"
+               [disabled]="formMode==='single'"
+               (change)="setRadioValue('pending','some')" />
+        <label [class.disabled]="formMode==='single'" for="somePending" class="sub block">
           Yes, but some have already been approved or rejected
         </label>
-        <label class="sub block">
-          <input type="radio" name="pending" (change)="setRadioValue('pending','no')" />
-          {{ labels.noPending }}
-        </label>
+        <input type="radio" id="noPending" name="pending" (change)="setRadioValue('pending','no')" />
+        <label class="sub block" for="noPending"> {{ labels.noPending }} </label>
       </fieldset>
       <div *ngIf="reviewForm.find('pending')?.valid && reviewForm.find('pending').value!=='yes'">
         <fieldset>
           <label class="block">{{ labels.reviewTime }}</label>
-          <label class="sub block">
-            <input type="radio" name="reviewTime" (change)="setRadioValue('reviewTime','0')" />
-            Less than a day
-          </label>
-          <label class="sub block">
-            <input type="radio" name="reviewTime" (change)="setRadioValue('reviewTime','1-3')" />
-            Within three days
-          </label>
-          <label class="sub block">
-            <input type="radio" name="reviewTime" (change)="setRadioValue('reviewTime','4-7')" />
-            Within a week
-          </label>
-          <label class="sub block">
-            <input type="radio" name="reviewTime" (change)="setRadioValue('reviewTime','8-14')" />
-            Within two weeks
-          </label>
-          <label class="sub block">
-            <input type="radio" name="reviewTime" (change)="setRadioValue('reviewTime','15-30')" />
-            Longer than two weeks
-          </label>
+          <input type="radio" id="rt0" name="reviewTime" (change)="setRadioValue('reviewTime','0')" />
+          <label class="sub block" for="rt0"> Less than a day </label>
+          <input type="radio" id="rt1" name="reviewTime" (change)="setRadioValue('reviewTime','1-3')" />
+          <label class="sub block" for="rt1"> Within three days </label>
+          <input type="radio" id="rt2" name="reviewTime" (change)="setRadioValue('reviewTime','4-7')" />
+          <label class="sub block" for="rt2"> Within a week </label>
+          <input type="radio" id="rt3" name="reviewTime" (change)="setRadioValue('reviewTime','8-14')" />
+          <label class="sub block" for="rt3"> Within two weeks </label>
+          <input type="radio" id="rt4" name="reviewTime" (change)="setRadioValue('reviewTime','15-30')" />
+          <label class="sub block" for="rt4"> Longer than two weeks </label>
         </fieldset>
         <fieldset>
           <label class="block" [class.error]="hasError('rejected')">{{ labels.rejected }}</label>
-          <label class="sub block">
-            <input type="radio" name="rejected" (change)="setRadioValue('rejected','yes')" />
-            {{ labels.allRejected }}
-          </label>
-          <label [class.disabled]="formMode==='single'" class="sub block">
-            <input #someRejected type="radio" name="rejected" [disabled]="formMode==='single'" (change)="setRadioValue('rejected','some')" />
+          <input type="radio" id="yesRejected" name="rejected" (change)="setRadioValue('rejected','yes')" />
+          <label class="sub block" for="yesRejected"> {{ labels.allRejected }} </label>
+          <input #someRejected
+                 type="radio"
+                 id="someRejected"
+                 name="rejected"
+                 [disabled]="formMode==='single'"
+                 (change)="setRadioValue('rejected','some')" />
+          <label [class.disabled]="formMode==='single'" class="sub block" for="someRejected">
             Yes, some of it
           </label>
-          <label class="sub block">
-            <input type="radio" name="rejected" (change)="setRadioValue('rejected','overturned')" />
-            {{ labels.overturned }}
-          </label>
-          <label class="sub block">
-            <input type="radio" name="rejected" (change)="setRadioValue('rejected','no')" />
-            No
-          </label>
+          <input type="radio" id="overturned" name="rejected" (change)="setRadioValue('rejected','overturned')" />
+          <label class="sub block" for="overturned"> {{ labels.overturned }} </label>
+          <input type="radio" id="noRejected" name="rejected" (change)="setRadioValue('rejected','no')" />
+          <label class="sub block" for="noRejected"> No </label>
         </fieldset>
       </div>
       <fieldset>
         <label class="block">{{ labels.comm }}</label>
-        <label class="sub block">
-          <input type="radio" name="comm" (change)="setRadioValue('comm','satisfactory')" />
+        <input type="radio" id="satcom" name="comm" (change)="setRadioValue('comm','satisfactory')" />
+        <label class="sub block" for="satcom">
           Yes, and I received a response and/or satisfactory resolution to my issues
         </label>
-        <label class="sub block">
-          <input type="radio" name="comm" (change)="setRadioValue('comm','unsatisfactory')" />
+        <input type="radio" id="unsatcom" name="comm" (change)="setRadioValue('comm','unsatisfactory')" />
+        <label class="sub block" for="unsatcom">
           Yes, but I didn't receive a response and/or my issues were not resolved
         </label>
-        <label class="sub">
-          <input type="radio" name="comm" (change)="setRadioValue('comm','no')" />
+        <input type="radio" id="nocom" name="comm" (change)="setRadioValue('comm','no')" />
+        <label class="sub block" for="nocom">
           No, I didn't attempt to contact the requester
         </label>
       </fieldset>
