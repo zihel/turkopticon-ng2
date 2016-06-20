@@ -19,7 +19,7 @@ export class AppComponent {
     temp: ['placeholder', 'navigation', 'items'],
     paths: ['reviews'],
     map: {},
-    icon: {reviews: 'grid'}
+    icon: {reviews: 'view_list'}
   }
   constructor() {  }
 

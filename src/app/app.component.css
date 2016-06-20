@@ -47,6 +47,9 @@ input {
   padding: 0.5em;
   float: right;
 }
-i.icon { font-family: Icons; font-style: normal }
+.material-icons {
+  vertical-align: middle;
+}
+/*i.icon { font-family: Icons; font-style: normal }
 i.icon.home:before { content: '\f015' }
-i.icon.grid:before { content: '\f00a' }
+i.icon.grid:before { content: '\f00a' }*/
