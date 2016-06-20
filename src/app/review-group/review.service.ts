@@ -58,7 +58,7 @@ export class ReviewService {
     let atom = <any>{};
     // for(let key of ['rid','name','aliases']) atom[key] = opt[key];
     atom.name = (`${generateName()} ${romanize(+atom.rid)}`);
-    atom.rid = hash(atom.name);
+    atom.rid = opt.rid || hash(atom.name);
     atom.aliases = [];
     repeat(getRandomInt(1,5), () => atom.aliases.push(`${this.aliasSeed.random()} ${romanize(getRandomInt(1,10))}`) );
     atom.aliases = atom.aliases.filter((v,i,a) => a.indexOf(v) === i);
