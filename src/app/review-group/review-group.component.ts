@@ -1,8 +1,9 @@
 import { Component, OnChanges, Input } from '@angular/core';
-import { ReviewContainerComponent } from '../review-group';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/observable/timer';
+
+import { ReviewContainerComponent } from '../review-group';
 
 @Component({
   moduleId: module.id,
