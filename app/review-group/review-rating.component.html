@@ -1,0 +1,6 @@
+placeholder!
+<div class="tos"
+  *ngIf="(data.review && data.review.tos.violation) || (data.tos && data.tos.violation)">
+  <span>violates mturk terms of service</span>
+  <div class="dd">{{data.review && data.review.tos.reason || data.tos.reason }}</div>
+</div>

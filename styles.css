@@ -1,0 +1,57 @@
+/*.wrapper { border: 1px solid red }*/
+.wrapper .name { color: crimson }
+.overview {
+  position: relative;
+  border: 1px solid rgba(34,36,38,.2);
+  margin: 1rem auto;
+  width: 80%;
+  max-width: 1000px;
+  padding: 0.8rem;
+}
+.overview .stats { padding: 0 0.8rem; }
+.overview .heading h2 {
+  font-size: 24px;
+  line-height: 1.1;
+  margin: 0;
+}
+.overview .heading h2 span:before { content: " | " }
+.overview .heading p {
+  margin: 0 0 5px;
+  line-height: 1.43;
+}
+.overview .heading p a {
+  text-decoration: none;
+  color: rgb(60, 135, 188);
+}
+.grid:not(i) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  padding: 0;
+}
+.left,.right {
+  padding: 0.8rem;
+  vertical-align: top;
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+}
+.left { width: 33.33333%; }
+.right { width: 66.66666%; }
+.column { flex-direction: column; }
+.box {
+  width: 100%;
+  padding-right: 0.8rem;
+}
+.divider {
+  border-right: 1px solid rgba(34,36,38,.15);
+}
+.value {
+  font-size: 2.8em;
+}
+.databox {
+  padding: 0.5rem;
+  width: 50%;
+  text-align: center;
+}
