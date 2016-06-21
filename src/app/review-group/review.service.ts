@@ -49,7 +49,7 @@ export class ReviewService {
     atom.rid = hash(atom.name);
     atom.aliases = [];
     if (num%3 === 1)
-      repeat(getRandomInt(1,4), () => atom.aliases.push(`${this.aliasSeed.random()} ${romanize(num)}`) );
+      repeat(getRandomInt(1,4), () => atom.aliases.push(`${this.aliasSeed.random()} ${romanize(num*num)}`) );
     atom.review = this.makeReview(num);
     return new ReviewSingleton(atom);
   }
@@ -57,7 +57,7 @@ export class ReviewService {
   private generateForId(num:number, opt:any):any {
     let atom = <any>{};
     // for(let key of ['rid','name','aliases']) atom[key] = opt[key];
-    atom.name = (`${generateName()} ${romanize(+atom.rid)}`);
+    atom.name = (`${generateName()}`);
     atom.rid = opt.rid || hash(atom.name);
     atom.aliases = [];
     repeat(getRandomInt(1,5), () => atom.aliases.push(`${this.aliasSeed.random()} ${romanize(getRandomInt(1,10))}`) );
