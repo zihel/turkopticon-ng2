@@ -49,6 +49,7 @@ input {
 }
 .material-icons {
   vertical-align: middle;
+  color: rgba(0,0,0,.54);
 }
 /*i.icon { font-family: Icons; font-style: normal }
 i.icon.home:before { content: '\f015' }

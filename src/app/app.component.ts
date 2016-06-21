@@ -16,10 +16,13 @@ export class AppComponent {
     map: {index: 'home', faq: 'FAQ'}
   };
   headPaths = {
-    temp: ['placeholder', 'navigation', 'items'],
-    paths: ['reviews'],
+    paths: ['reviews','requesters','messages'],
     map: {},
-    icon: {reviews: 'view_list'}
+    icon: {
+      reviews: 'view_list',
+      requesters: 'bubble_chart',
+      messages: 'email'
+    }
   }
   constructor() {  }
 
