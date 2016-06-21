@@ -34,7 +34,7 @@ export class ReviewService {
     return {
       user: `Some User ${('000'+num).slice(-3)}`,
       text: getIpsum(),
-      title: 'HIT Title placeholder',
+      title: getTitle(),
       time: new Date().toString(),
       attrs: {},
       tos: {
@@ -90,6 +90,23 @@ function getIpsum ():string {
     'Morbi viverra erat est, non ultrices turpis elementum sed. Suspendisse tincidunt blandit purus porta finibus. Nam id nunc vitae ipsum ultricies pellentesque. Duis fringilla sapien id risus condimentum consectetur. Suspendisse gravida rhoncus tellus vitae venenatis. Nunc viverra sem at vehicula ornare. Nulla vitae nulla nibh. Nam nec euismod dui. Sed eget sodales nisi. Cras non ultrices urna. Proin quis mauris euismod, commodo est mollis, faucibus erat. Praesent ullamcorper, diam vel posuere posuere, lacus dolor rhoncus mauris, sit amet tempus augue eros ut lacus. Fusce et libero erat. Proin ut urna nec nulla cursus mollis. Praesent et laoreet urna, eget accumsan nulla.',
     'Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper.'
   ][getRandomInt(0,5)];
+}
+function getTitle():string {
+  const t:string[] = [
+    'Evaluate dried fruit flavors',
+    'Is this an example of wiggling?',
+    'Survey about past and future desires',
+    'Find a webm clip',
+    'Evaluate a song',
+    'Would you touch this?',
+    'Find an example of the following phrases',
+    'Take a survey on modern art',
+    'Categorize the following image',
+    'Extract images from webpage',
+    'Create a multisyllabic rhyme',
+    'Predict future lottery numbers'
+  ];
+  return t[getRandomInt(0,t.length-1)];
 }
 function generateName():string {
   const gn:Array<string> = ['Anna', 'Alice', 'Kracen', 'Ilya', 'Ian', 'Ishmael', 'Roslan', 'Aidan', 'Marlo', 'Blake', 'Wiggles', 'Michi', 'Reign', 'Dawn', 'Trigger', 'Kerek'];

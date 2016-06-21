@@ -21,6 +21,7 @@ export class ReviewGroupComponent implements OnChanges {
   constructor() {
   }
 
+
   ngOnChanges() {
     console.log('review data:',this.reviewData);
     // this.reviewData.subscribe(this.reviews.push)
