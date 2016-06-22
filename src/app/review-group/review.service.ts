@@ -45,7 +45,7 @@ export class ReviewService {
   }
   private generateGlobal(num:number):ReviewSingleton {
     let atom = <any>{};
-    atom.name = `${generateName()} ${romanize(num)}`;
+    atom.name = `${generateName()} ${romanize(num*num)}`;
     atom.rid = hash(atom.name);
     atom.aliases = [];
     if (num%3 === 1)
