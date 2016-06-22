@@ -4,10 +4,9 @@
   <nav>
     <div>
       <a *ngFor="let link of headPaths.paths" [routerLink]="['/'+link]">
-        <i class="material-icons">{{ headPaths.icon[link] }}</i>
+        <i class="material-icons md-dark">{{ headPaths.icon[link] }}</i>
         {{ headPaths.map[link] || link }}
       </a>
-      <a *ngFor="let temp of headPaths.temp">{{ temp }}</a>
     </div>
     <div>
       <input type="text" placeholder="Search" />
