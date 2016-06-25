@@ -36,6 +36,7 @@ fieldset {
 .float {
   position: absolute;
   top: 0.8rem;
+  left: 0.73rem;
   font-size: 1rem;
   cursor: text;
   transition: 0.2s ease-out;
